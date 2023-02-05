@@ -6,8 +6,8 @@ function App() {
   const [contacts, setContacts] = useState([]);
 
   // Handlers
-  const addContactHandler = (e) => {
-    e.preventDefault();
+  const addContactHandler = (contact) => {
+    setContacts([...contacts, { id: new Date().getTime(), ...contact }]);
   };
 
   return (

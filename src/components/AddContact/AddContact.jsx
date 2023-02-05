@@ -12,8 +12,25 @@ const AddContact = ({ addContactHandler }) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (!contact.name || !contact.email) {
+      alert("Please fill the inputs !");
+      return;
+    }
+
+    addContactHandler(contact);
+    
+    // clear the inputs
+    setContact({
+      name: "",
+      email: "",
+    });
+  };
+
   return (
-    <form onSubmit={(e) => addContactHandler(e)}>
+    <form onSubmit={(e) => submitHandler(e)}>
       <div className={styles.formControl}>
         <label htmlFor="name">Name</label>
         <input
