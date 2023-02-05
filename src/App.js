@@ -4,7 +4,13 @@ import React from "react";
 function App() {
   return (
     <React.StrictMode>
-      <div className="App"></div>
+      <main className="App">
+        <header>
+          <h1 className="app-title">Add Contact</h1>
+        </header>
+        <section>Add Contact</section>
+        <section>Contact List</section>
+      </main>
     </React.StrictMode>
   );
 }

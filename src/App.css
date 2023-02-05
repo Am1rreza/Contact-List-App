@@ -2,4 +2,11 @@
   background-color: #f6f6f6;
   min-height: 100vh;
   width: 100%;
+  text-align: center;
+}
+
+.app-title {
+  border-bottom: 1px solid #ccc;
+  color: #333;
+  padding: 1rem 0;
 }
