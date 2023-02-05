@@ -10,3 +10,9 @@
   color: #333;
   padding: 1rem 0;
 }
+
+.btn {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
