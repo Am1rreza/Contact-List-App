@@ -35,16 +35,17 @@ function App() {
         <Switch>
           <Route
             path={"/add"}
-            component={() => (
-              <AddContact addContactHandler={addContactHandler} />
+            render={(props) => (
+              <AddContact addContactHandler={addContactHandler} {...props} />
             )}
           />
           <Route
             path={"/"}
-            component={() => (
+            render={(props) => (
               <ContactList
                 contacts={contacts}
                 onDelete={deleteContactHandler}
+                {...props}
               />
             )}
           />

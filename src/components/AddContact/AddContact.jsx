@@ -1,7 +1,7 @@
 import { useState } from "react";
 import styles from "./addContact.module.css";
 
-const AddContact = ({ addContactHandler }) => {
+const AddContact = ({ addContactHandler, history }) => {
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -27,6 +27,8 @@ const AddContact = ({ addContactHandler }) => {
       name: "",
       email: "",
     });
+
+    history.push("/");
   };
 
   return (
