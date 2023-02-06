@@ -1,4 +1,5 @@
 import styles from "./contactList.module.css";
+import userImage from "../../assets/images/user-icon.png";
 
 const ContactList = ({ contacts, onDelete }) => {
   if (contacts.length === 0) return <h2>Add some contact !</h2>;
@@ -11,12 +12,15 @@ const ContactList = ({ contacts, onDelete }) => {
         return (
           <div key={id} className={styles.contact}>
             <div>
-              <p>
-                <span>Name:</span> {name}
-              </p>
-              <p>
-                <span>Email:</span> {email}
-              </p>
+              <img src={userImage} alt="user-icon" />
+              <div>
+                <p>
+                  <span>Name:</span> {name}
+                </p>
+                <p>
+                  <span>Email:</span> {email}
+                </p>
+              </div>
             </div>
             <button className="btn secondary" onClick={() => onDelete(id)}>
               Delete

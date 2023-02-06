@@ -18,6 +18,12 @@
 
 .contact > div {
   display: flex;
+  align-items: center;
+  gap: 0 1rem;
+}
+
+.contact > div > div {
+  display: flex;
   flex-direction: column;
   gap: 0.5rem 0;
   align-items: flex-start;
@@ -26,4 +32,9 @@
 
 .contact span {
   font-weight: 600;
+}
+
+.contact img {
+  width: 55px;
+  height: 55px;
 }
