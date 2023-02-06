@@ -21,7 +21,7 @@ const AddContact = ({ addContactHandler }) => {
     }
 
     addContactHandler(contact);
-    
+
     // clear the inputs
     setContact({
       name: "",
@@ -31,29 +31,31 @@ const AddContact = ({ addContactHandler }) => {
 
   return (
     <form onSubmit={(e) => submitHandler(e)}>
-      <div className={styles.formControl}>
-        <label htmlFor="name">Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={contact.name}
-          onChange={changeHandler}
-        />
+      <div className={styles.formWrapper}>
+        <div className={styles.formControl}>
+          <label htmlFor="name">Name</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={contact.name}
+            onChange={changeHandler}
+          />
+        </div>
+        <div className={styles.formControl}>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={contact.email}
+            onChange={changeHandler}
+          />
+        </div>
+        <button type="submit" className="btn primary">
+          Add Contact
+        </button>
       </div>
-      <div className={styles.formControl}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={contact.email}
-          onChange={changeHandler}
-        />
-      </div>
-      <button type="submit" className="btn">
-        Add Contact
-      </button>
     </form>
   );
 };

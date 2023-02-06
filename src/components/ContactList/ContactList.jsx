@@ -14,7 +14,7 @@ const ContactList = ({ contacts, onDelete }) => {
             <p>
               <span>Email:</span> {email}
             </p>
-            <button className="btn" onClick={() => onDelete(id)}>
+            <button className="btn secondary" onClick={() => onDelete(id)}>
               Delete
             </button>
           </div>

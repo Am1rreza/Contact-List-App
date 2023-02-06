@@ -20,7 +20,7 @@ function App() {
     <React.StrictMode>
       <main className="App">
         <header>
-          <h1 className="app-title">Add Contact</h1>
+          <h1 className="app-title">Contact App</h1>
         </header>
         <AddContact addContactHandler={addContactHandler} />
         <ContactList contacts={contacts} onDelete={deleteContactHandler} />

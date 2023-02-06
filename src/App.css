@@ -15,4 +15,25 @@
   border: none;
   outline: none;
   cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 4px;
+  transition: 0.15s;
+}
+
+.primary {
+  background-color: #4338ca;
+  color: #e0e7ff;
+}
+
+.secondary {
+  background-color: #e0e7ff;
+  color: #4338ca;
+}
+
+.primary:hover {
+  background-color: #4f42e4;
+}
+
+.secondary:hover {
+  background-color: #cbd6f9;
 }
