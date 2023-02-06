@@ -12,6 +12,8 @@ function App() {
   };
 
   const deleteContactHandler = (id) => {
+    const filteredContacts = contacts.filter((contact) => contact.id !== id);
+    setContacts(filteredContacts);
   };
 
   return (
