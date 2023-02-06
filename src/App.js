@@ -11,6 +11,9 @@ function App() {
     setContacts([...contacts, { id: new Date().getTime(), ...contact }]);
   };
 
+  const deleteContactHandler = (id) => {
+  };
+
   return (
     <React.StrictMode>
       <main className="App">
@@ -18,7 +21,7 @@ function App() {
           <h1 className="app-title">Add Contact</h1>
         </header>
         <AddContact addContactHandler={addContactHandler} />
-        <ContactList />
+        <ContactList contacts={contacts} onDelete={deleteContactHandler} />
       </main>
     </React.StrictMode>
   );
