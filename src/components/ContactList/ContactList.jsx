@@ -2,7 +2,8 @@ import styles from "./contactList.module.css";
 import userImage from "../../assets/images/user-icon.png";
 
 const ContactList = ({ contacts, onDelete }) => {
-  if (contacts.length === 0) return <h2>Add some contact !</h2>;
+  if (contacts.length === 0)
+    return <h2 style={{ marginTop: "1rem" }}>Add some contact !</h2>;
 
   return (
     <section className={styles.contactList}>

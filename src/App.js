@@ -2,6 +2,7 @@ import "./App.css";
 import React, { useEffect, useState } from "react";
 import AddContact from "./components/AddContact/AddContact";
 import ContactList from "./components/ContactList/ContactList";
+import { Route, Switch } from "react-router-dom";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -31,8 +32,25 @@ function App() {
         <header>
           <h1 className="app-title">Contact App</h1>
         </header>
-        <AddContact addContactHandler={addContactHandler} />
-        <ContactList contacts={contacts} onDelete={deleteContactHandler} />
+        <Switch>
+          <Route
+            path={"/add"}
+            component={() => (
+              <AddContact addContactHandler={addContactHandler} />
+            )}
+          />
+          <Route
+            path={"/"}
+            component={() => (
+              <ContactList
+                contacts={contacts}
+                onDelete={deleteContactHandler}
+              />
+            )}
+          />
+        </Switch>
+        {/* <AddContact addContactHandler={addContactHandler} />
+        <ContactList contacts={contacts} onDelete={deleteContactHandler} /> */}
       </main>
     </React.StrictMode>
   );
