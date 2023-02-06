@@ -4,6 +4,18 @@
   align-items: center;
 }
 
+.contactList h2 {
+  margin: 1rem 0;
+}
+
+.contactList a {
+  margin-bottom: 1rem;
+}
+
+.contactList a > button {
+  width: 5rem;
+}
+
 .contact {
   width: 70%;
   display: flex;
@@ -13,7 +25,7 @@
   border: 1px solid #ccc;
   background-color: #fff;
   border-radius: 5px;
-  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 .contact > div {

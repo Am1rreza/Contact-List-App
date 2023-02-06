@@ -31,7 +31,7 @@ function App() {
       <main className="App">
         <header>
           <h1 className="app-title">Contact App</h1>
-        </header>
+        </header> 
         <Switch>
           <Route
             path={"/add"}
