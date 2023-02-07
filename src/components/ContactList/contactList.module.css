@@ -8,12 +8,17 @@
   margin: 1rem 0;
 }
 
-.contactList a {
-  margin-bottom: 1rem;
+a {
+  display: block;
+  margin: 1rem 0;
 }
 
-.contactList a > button {
+a > button {
   width: 5rem;
+}
+
+.contactList a {
+  margin-top: 0;
 }
 
 .contact {
