@@ -4,13 +4,17 @@ import AddContact from "./components/AddContact/AddContact";
 import ContactList from "./components/ContactList/ContactList";
 import { Route, Switch } from "react-router-dom";
 import ContactPage from "./pages/ContactPage";
+import axios from "axios";
 
 function App() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
-    const savedContacts = JSON.parse(localStorage.getItem("contacts"));
-    if (savedContacts) setContacts(savedContacts);
+    // IIFE
+    (async function () {
+      const { data } = await axios.get("http://localhost:3001/contacts");
+      setContacts(data);
+    })();
   }, []);
 
   useEffect(() => {
