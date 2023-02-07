@@ -26,16 +26,16 @@ function App() {
   // Handlers
   const addContactHandler = async (contact) => {
     try {
-      setContacts([...contacts, { id: new Date().getTime(), ...contact }]);
-      await addContactService(contact);
+      const { data } = await addContactService(contact);
+      setContacts([...contacts, data]);
     } catch (error) {}
   };
 
   const deleteContactHandler = async (id) => {
     try {
+      await deleteContactService(id);
       const filteredContacts = contacts.filter((contact) => contact.id !== id);
       setContacts(filteredContacts);
-      await deleteContactService(id);
     } catch (error) {}
   };
 
