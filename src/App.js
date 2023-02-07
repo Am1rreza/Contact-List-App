@@ -4,31 +4,39 @@ import AddContact from "./components/AddContact/AddContact";
 import ContactList from "./components/ContactList/ContactList";
 import { Route, Switch } from "react-router-dom";
 import ContactPage from "./pages/ContactPage";
-import axios from "axios";
+import deleteContactService from "./services/deleteContactService";
+import getContactsService from "./services/getContactsService";
+import addContactService from "./services/addContactService";
 
 function App() {
   const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
     // IIFE
-    (async function () {
-      const { data } = await axios.get("http://localhost:3001/contacts");
+    async function fetchContacts() {
+      const { data } = await getContactsService();
       setContacts(data);
-    })();
+    }
+
+    try {
+      fetchContacts();
+    } catch (error) {}
   }, []);
 
-  useEffect(() => {
-    localStorage.setItem("contacts", JSON.stringify(contacts));
-  }, [contacts]);
-
   // Handlers
-  const addContactHandler = (contact) => {
-    setContacts([...contacts, { id: new Date().getTime(), ...contact }]);
+  const addContactHandler = async (contact) => {
+    try {
+      setContacts([...contacts, { id: new Date().getTime(), ...contact }]);
+      await addContactService(contact);
+    } catch (error) {}
   };
 
-  const deleteContactHandler = (id) => {
-    const filteredContacts = contacts.filter((contact) => contact.id !== id);
-    setContacts(filteredContacts);
+  const deleteContactHandler = async (id) => {
+    try {
+      const filteredContacts = contacts.filter((contact) => contact.id !== id);
+      setContacts(filteredContacts);
+      await deleteContactService(id);
+    } catch (error) {}
   };
 
   return (
