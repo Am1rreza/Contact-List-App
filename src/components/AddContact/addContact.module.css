@@ -14,6 +14,10 @@ form {
   gap: 1rem 0;
 }
 
+.formWrapper a {
+  color: #333;
+}
+
 .formControl {
   display: flex;
   flex-direction: column;

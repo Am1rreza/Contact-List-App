@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import styles from "./addContact.module.css";
 
 const AddContact = ({ addContactHandler, history }) => {
@@ -32,33 +33,36 @@ const AddContact = ({ addContactHandler, history }) => {
   };
 
   return (
-    <form onSubmit={(e) => submitHandler(e)}>
-      <div className={styles.formWrapper}>
-        <div className={styles.formControl}>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={contact.name}
-            onChange={changeHandler}
-          />
+    <>
+      <form onSubmit={(e) => submitHandler(e)}>
+        <div className={styles.formWrapper}>
+          <div className={styles.formControl}>
+            <label htmlFor="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={contact.name}
+              onChange={changeHandler}
+            />
+          </div>
+          <div className={styles.formControl}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={contact.email}
+              onChange={changeHandler}
+            />
+          </div>
+          <button type="submit" className="btn primary">
+            Add Contact
+          </button>
+          <Link to={"/"}>Go to Contacts list</Link>
         </div>
-        <div className={styles.formControl}>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={contact.email}
-            onChange={changeHandler}
-          />
-        </div>
-        <button type="submit" className="btn primary">
-          Add Contact
-        </button>
-      </div>
-    </form>
+      </form>
+    </>
   );
 };
 

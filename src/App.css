@@ -48,6 +48,10 @@
   border: 1px solid #ccc;
 }
 
+.contactPageSection + a {
+  color: #333;
+}
+
 .contactPageSection div {
   display: flex;
   flex-direction: column;
