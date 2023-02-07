@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import AddContact from "./components/AddContact/AddContact";
 import ContactList from "./components/ContactList/ContactList";
 import { Route, Switch } from "react-router-dom";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -31,8 +32,12 @@ function App() {
       <main className="App">
         <header>
           <h1 className="app-title">Contact App</h1>
-        </header> 
+        </header>
         <Switch>
+          <Route
+            path={"/contact/:id"}
+            component={(props) => <ContactPage {...props} />}
+          />
           <Route
             path={"/add"}
             render={(props) => (

@@ -18,16 +18,8 @@ const ContactList = ({ contacts, onDelete }) => {
       <h2>Contacts</h2>
 
       {contacts.map((contact) => {
-        const { name, email, id } = contact;
-
         return (
-          <Contact
-            key={id}
-            onDelete={onDelete}
-            name={name}
-            email={email}
-            id={id}
-          />
+          <Contact key={contact.id} onDelete={onDelete} contact={contact} />
         );
       })}
       <Link to={"/add"}>
@@ -40,19 +32,26 @@ const ContactList = ({ contacts, onDelete }) => {
 export default ContactList;
 
 // contact component
-const Contact = ({ email, name, id, onDelete }) => {
+const Contact = ({ contact, onDelete }) => {
+  const { name, id, email } = contact;
+
   return (
     <div className={styles.contact}>
       <div>
         <img src={userImage} alt="user-icon" />
-        <div>
-          <p>
-            <span>Name:</span> {name}
-          </p>
-          <p>
-            <span>Email:</span> {email}
-          </p>
-        </div>
+        <Link
+          to={{ pathname: `/contact/${id}`, state: { contact: contact } }}
+          className={styles.contactBox}
+        >
+          <div>
+            <p>
+              <span>Name:</span> {name}
+            </p>
+            <p>
+              <span>Email:</span> {email}
+            </p>
+          </div>
+        </Link>
       </div>
       <button className="btn secondary" onClick={() => onDelete(id)}>
         Delete
