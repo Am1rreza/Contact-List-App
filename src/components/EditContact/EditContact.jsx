@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "../AddContact/addContact.module.css";
 import getOneContactService from "../../services/getOneContactService";
 
-const EditContact = ({ addContactHandler, history, match }) => {
+const EditContact = ({ editContactHandler, history, match }) => {
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -33,7 +33,8 @@ const EditContact = ({ addContactHandler, history, match }) => {
       return;
     }
 
-    addContactHandler(contact);
+    // addContactHandler(contact);
+    editContactHandler(contactId, contact);
 
     // clear the inputs
     setContact({
@@ -69,7 +70,7 @@ const EditContact = ({ addContactHandler, history, match }) => {
             />
           </div>
           <button type="submit" className="btn primary">
-            Edit Contact
+            Update Contact
           </button>
           <Link to={"/"}>Back to Contacts list?</Link>
         </div>

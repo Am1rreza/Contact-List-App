@@ -8,6 +8,7 @@ import deleteContactService from "./services/deleteContactService";
 import getContactsService from "./services/getContactsService";
 import addContactService from "./services/addContactService";
 import EditContact from "./components/EditContact/EditContact";
+import editContactService from "./services/editContactService";
 
 function App() {
   const [contacts, setContacts] = useState([]);
@@ -40,6 +41,14 @@ function App() {
     } catch (error) {}
   };
 
+  const editContactHandler = async (id, contact) => {
+    try {
+      await editContactService(id, contact);
+      const { data } = await getContactsService();
+      setContacts(data);
+    } catch (error) {}
+  };
+
   return (
     <React.StrictMode>
       <main className="App">
@@ -47,7 +56,12 @@ function App() {
           <h1 className="app-title">Contact App</h1>
         </header>
         <Switch>
-          <Route path={"/edit/:id"} component={EditContact} />
+          <Route
+            path={"/edit/:id"}
+            render={(props) => (
+              <EditContact editContactHandler={editContactHandler} {...props} />
+            )}
+          />
           <Route path={"/contact/:id"} component={ContactPage} />
           <Route
             path={"/add"}
