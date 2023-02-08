@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import addContactService from "../../services/addContactService";
 import styles from "./addContact.module.css";
 
-const AddContact = ({ addContactHandler, history }) => {
+const AddContact = ({ history }) => {
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -13,7 +14,7 @@ const AddContact = ({ addContactHandler, history }) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (!contact.name || !contact.email) {
@@ -21,15 +22,11 @@ const AddContact = ({ addContactHandler, history }) => {
       return;
     }
 
-    addContactHandler(contact);
-
-    // clear the inputs
-    setContact({
-      name: "",
-      email: "",
-    });
-
-    history.push("/");
+    // fetch to db
+    try {
+      await addContactService(contact);
+      history.push("/");
+    } catch (error) {}
   };
 
   return (

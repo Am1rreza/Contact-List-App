@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styles from "../AddContact/addContact.module.css";
 import getOneContactService from "../../services/getOneContactService";
+import editContactService from "../../services/editContactService";
 
-const EditContact = ({ editContactHandler, history, match }) => {
+const EditContact = ({ history, match }) => {
   const [contact, setContact] = useState({
     name: "",
     email: "",
@@ -25,7 +26,7 @@ const EditContact = ({ editContactHandler, history, match }) => {
     setContact({ ...contact, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
     if (!contact.name || !contact.email) {
@@ -33,16 +34,11 @@ const EditContact = ({ editContactHandler, history, match }) => {
       return;
     }
 
-    // addContactHandler(contact);
-    editContactHandler(contactId, contact);
-
-    // clear the inputs
-    setContact({
-      name: "",
-      email: "",
-    });
-
-    history.push("/");
+    // fetch to db
+    try {
+      await editContactService(contactId, contact);
+      history.push("/");
+    } catch (error) {}
   };
 
   return (

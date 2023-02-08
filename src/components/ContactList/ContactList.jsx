@@ -1,12 +1,41 @@
 import styles from "./contactList.module.css";
 import userImage from "../../assets/images/user-icon.png";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import getContactsService from "../../services/getContactsService";
+import deleteContactService from "../../services/deleteContactService";
 
-const ContactList = ({ contacts, onDelete }) => {
-  if (contacts.length === 0)
+const ContactList = () => {
+  const [contacts, setContacts] = useState(null);
+
+  useEffect(() => {
+    // IIFE
+    async function fetchContacts() {
+      const { data } = await getContactsService();
+      setContacts(data);
+    }
+
+    try {
+      fetchContacts();
+    } catch (error) {}
+  }, []);
+
+  // Handlers
+  const deleteContactHandler = async (id) => {
+    try {
+      await deleteContactService(id);
+      const filteredContacts = contacts.filter((contact) => contact.id !== id);
+      setContacts(filteredContacts);
+    } catch (error) {}
+  };
+
+  // Conditional rendering
+  if (!contacts) return <h2 style={{ marginTop: "1rem" }}>Loading...</h2>;
+
+  if (contacts && contacts.length === 0)
     return (
       <>
-        <h2 style={{ marginTop: "1rem" }}>Add some contact !</h2>
+        <h2 style={{ margin: "1rem 0" }}>Add some contact !</h2>
         <Link to={"/add"}>
           <button className="btn primary">Add</button>
         </Link>
@@ -19,7 +48,11 @@ const ContactList = ({ contacts, onDelete }) => {
 
       {contacts.map((contact) => {
         return (
-          <Contact key={contact.id} onDelete={onDelete} contact={contact} />
+          <Contact
+            key={contact.id}
+            onDelete={deleteContactHandler}
+            contact={contact}
+          />
         );
       })}
       <Link to={"/add"}>
