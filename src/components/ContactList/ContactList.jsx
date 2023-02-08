@@ -37,7 +37,7 @@ const Contact = ({ contact, onDelete }) => {
 
   return (
     <div className={styles.contact}>
-      <div>
+      <div className={styles.userDetail}>
         <img src={userImage} alt="user-icon" />
         <Link
           to={{ pathname: `/contact/${id}`, state: { contact: contact } }}
@@ -53,9 +53,14 @@ const Contact = ({ contact, onDelete }) => {
           </div>
         </Link>
       </div>
-      <button className="btn secondary" onClick={() => onDelete(id)}>
-        Delete
-      </button>
+      <div className={styles.btnBox}>
+        <Link to={`/edit/${id}`}>
+          <button className="btn secondary">Edit</button>
+        </Link>
+        <button className="btn secondary" onClick={() => onDelete(id)}>
+          Delete
+        </button>
+      </div>
     </div>
   );
 };
