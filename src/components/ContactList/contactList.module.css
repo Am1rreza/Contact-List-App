@@ -8,6 +8,27 @@
   margin: 1rem 0;
 }
 
+.contactList input {
+  outline: none;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 5px;
+  width: 50%;
+  margin: 1rem 0;
+}
+
+.contactList input:focus {
+  outline: 1px solid #4338ca;
+  border: 1px solid #4338ca;
+}
+
+.contactListHeader {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .userDetail a {
   display: block;
   margin: 1rem 0;

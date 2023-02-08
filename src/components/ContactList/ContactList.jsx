@@ -75,8 +75,8 @@ const ContactList = () => {
 
   return (
     <section className={styles.contactList}>
+      <div className={styles.contactListHeader}>
       <h2>Contacts</h2>
-      <div>
         <input
           type="text"
           placeholder="Search Somthing..."
