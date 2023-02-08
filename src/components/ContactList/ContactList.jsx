@@ -7,18 +7,31 @@ import deleteContactService from "../../services/deleteContactService";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState(null);
+  const [allContacts, setAllContacts] = useState(null);
+  const [searchValue, setSearchValue] = useState("");
 
   useEffect(() => {
-    // IIFE
     async function fetchContacts() {
       const { data } = await getContactsService();
       setContacts(data);
+      setAllContacts(data);
     }
 
     try {
       fetchContacts();
     } catch (error) {}
   }, []);
+
+  useEffect(() => {
+    async function fetchContacts() {
+      const { data } = await getContactsService();
+      setAllContacts(data);
+    }
+
+    try {
+      fetchContacts();
+    } catch (error) {}
+  }, [contacts]);
 
   // Handlers
   const deleteContactHandler = async (id) => {
@@ -29,10 +42,26 @@ const ContactList = () => {
     } catch (error) {}
   };
 
-  // Conditional rendering
-  if (!contacts) return <h2 style={{ marginTop: "1rem" }}>Loading...</h2>;
+  const changeHandler = (e) => {
+    setSearchValue(e.target.value);
+    const search = e.target.value;
 
-  if (contacts && contacts.length === 0)
+    if (search !== "") {
+      const filteredContacts = allContacts.filter((contact) =>
+        Object.values(contact)
+          .join(" ")
+          .toLowerCase()
+          .includes(search.toLowerCase())
+      );
+
+      setContacts(filteredContacts);
+    } else {
+      setContacts(allContacts);
+    }
+  };
+
+  // Conditional rendering
+  if (allContacts && allContacts.length === 0)
     return (
       <>
         <h2 style={{ margin: "1rem 0" }}>Add some contact !</h2>
@@ -42,9 +71,19 @@ const ContactList = () => {
       </>
     );
 
+  if (!contacts) return <h2 style={{ marginTop: "1rem" }}>Loading...</h2>;
+
   return (
     <section className={styles.contactList}>
       <h2>Contacts</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Search Somthing..."
+          value={searchValue}
+          onChange={changeHandler}
+        />
+      </div>
 
       {contacts.map((contact) => {
         return (
